@@ -359,4 +359,4 @@ TSWLatexianTemp*
 *.spl
 
 .remote-sync.json
-scratch.jl
+setup-scripts/bcm-wifi/hybrid-v35_64-nodebug-pcoem-6_30_223_271.tar.gz
