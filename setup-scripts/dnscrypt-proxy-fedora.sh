@@ -20,19 +20,21 @@ dnf -y upgrade
 echo "Installing required packages..."
 dnf -y install fakeroot make automake gcc gcc-c++ libtool ca-certificates curl libsodium-devel
 
-# UNCOMMENT THE FOLLOWING 2 SECTIONS TO INSTALL LIBSODIUM FROM LATEST SOURCE!
-# Download the latest libsodium and extract it
-#echo "Downloading, extracting, and installing the latest libsodium..."
-#wget -O ~/libsodium.tar.gz $LIBS_URL
-#cd ~/
-#tar -xvf ~/libsodium.tar.gz
-#cd ~/libsodium-*
+# Install libsodium from source
+if [ "$1" == "true" ]; then
+    # Download the latest libsodium and extract it
+    echo "Downloading, extracting, and installing the latest libsodium..."
+    wget -O ~/libsodium.tar.gz $LIBS_URL
+    cd ~/
+    tar -xvf ~/libsodium.tar.gz
+    cd ~/libsodium-*
 
-# Configure, make, and install libsodium
-#./configure
-#make && make install
-#echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
-#ldconfig
+    # Configure, make, and install libsodium
+    ./configure
+    make && make install
+    echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
+    ldconfig
+fi
 
 # Download the latest dnscrypt-proxy and extract it
 echo "Downloading, extracting, and installing the latest dnscrypt-proxy..."
@@ -46,8 +48,4 @@ cd ~/dnscrypt-*
 make
 make install
 
-# Verify it is installed and unset environment variables
-which dnscrypt-proxy
 echo "dnscrypt-proxy is now installed!"
-unset DNSC_URL
-unset LIBS_URL

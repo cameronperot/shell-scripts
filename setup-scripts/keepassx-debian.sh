@@ -35,8 +35,4 @@ cmake ..
 make && make install
 cd ~
 
-# Verify it is installed and unset environment variables
-which keepassx
 echo "KeePassX is now installed!"
-unset KPX_VER
-unset KPX_URL

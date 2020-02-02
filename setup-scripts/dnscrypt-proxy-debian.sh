@@ -45,8 +45,4 @@ cd ~/dnscrypt-*
 make && make install
 cd ~
 
-# Verify it is installed and unset environment variables
-which dnscrypt-proxy
 echo "dnscrypt-proxy is now installed!"
-unset DNSC_URL
-unset LIBS_URL
