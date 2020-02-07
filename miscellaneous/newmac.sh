@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 sudo ip link set dev wlp0s20f3 down
 

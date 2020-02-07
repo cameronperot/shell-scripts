@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 cd ~
 git clone https://github.com/netblue30/firejail.git

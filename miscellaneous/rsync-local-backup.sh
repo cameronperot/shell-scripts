@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 echo "Backing up Documents..."
 rsync -av --update --delete-before /media/veracrypt1/Documents/ /media/veracrypt2/Documents/

@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 # This script is for installing KeePassX on Debian based distros
 if [ "$USER" != 'root' ]; then

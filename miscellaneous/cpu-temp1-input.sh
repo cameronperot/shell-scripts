@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 PATH_5=/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
 PATH_6=/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input

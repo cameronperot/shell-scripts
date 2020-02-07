@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 mkdir /tmp/adodefont
 cd /tmp/adodefont

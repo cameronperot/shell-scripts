@@ -18,6 +18,7 @@ sudo dnf -y install \
   qt5-qtsvg-devel \
   qt5-qtx11extras \
   qt5-qtx11extras-devel \
+  qt5ct \
   libgcrypt-devel \
   libargon2-devel \
   libsodium-devel \

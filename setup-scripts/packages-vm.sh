@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euf -o pipefail
 
 # This script is for installing some useful packages on debian
 if [ "$USER" != 'root' ]; then

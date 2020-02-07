@@ -1,11 +1,13 @@
-#!/bin/bash	
+#!/usr/bin/env bash
+set -euf -o pipefail
+
 # This script is for clearing log files in /var/log/
 if [ "$USER" != 'root' ]; then
 	echo "You must run this script as root!"
 	exit 1;
 fi
 
-#!/bin/bash
+#!/usr/bin/env bash
 cat /dev/null > /var/log/auth.log
 cat /dev/null > /var/log/daemon.log
 cat /dev/null > /var/log/lastlog
