@@ -1,28 +1,37 @@
-#!/bin/bash	
+#!/usr/bin/env bash
+set -euf -o pipefail
+
 # This script is for installing the bcm wl driver
 if [ "$USER" != 'root' ]; then
 	echo "You must run this script as root!"
-	exit 1;
+	exit 1
 fi
+
+source_dir=/tmp/bcm_wifi
 
 # Install required packages
 apt-get update
 apt-get install -y dkms module-assistant build-essential
 
-# Create working directory
-mkdir ~/bcm_wl
-cd ~/bcm_wl
-
-if [ 'x86_64' == `uname -m` ]; then
-	# 64-bit driver files.
-	FILE='hybrid-v35_64-nodebug-pcoem-6_30_223_271.tar.gz'
-else
-	# 32-bit driver files.
-	FILE='hybrid-v35-nodebug-pcoem-6_30_223_271.tar.gz'
+# Check if directory already exists, if so delete it
+if [ -d "$source_dir" ]; then
+	rm -rf "$source_dir"
 fi
 
+# Create working directory
+mkdir "$source_dir"
+cd "$source_dir"
+
+FILE='hybrid-v35_64-nodebug-pcoem-6_30_223_271.tar.gz'
+
 # Download & extract the source
-wget https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/$FILE
+
+if [ "$1" == "download" ]; then
+	wget https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/$FILE
+else
+	cp ./$FILE ./
+fi
+
 tar xvzf $FILE
 
 # Compile & install the driver
