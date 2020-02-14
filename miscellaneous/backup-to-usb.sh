@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 mount_device=$1
 mount_dir=/mnt/backup_usb

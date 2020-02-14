@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 # This script is for clearing log files in /var/log/
 if [ "$USER" != 'root' ]; then

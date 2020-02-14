@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 cd ~
 git clone https://github.com/kitsunyan/intel-undervolt.git

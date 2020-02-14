@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 if [ "$USER" != 'root' ]; then
         echo "You must run this script as root!"

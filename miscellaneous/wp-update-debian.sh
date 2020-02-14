@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 # This script is for updating a wordpress installation
 if [ "$USER" != 'root' ]; then

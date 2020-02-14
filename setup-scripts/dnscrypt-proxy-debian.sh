@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 # This script is for installing the latest dnscrypt-proxy on Debian based distros
 if [ "$USER" != 'root' ]; then

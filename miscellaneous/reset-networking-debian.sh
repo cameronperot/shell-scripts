@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 # This resetting the networking routes after disconnecting OpenVPN
 if [ "$USER" != 'root' ]; then

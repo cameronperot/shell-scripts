@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euf -o pipefail
+set -eu -o pipefail
 
 # This script is for installing KeePassX on Fedora/RHEL based distros
 if [[ $EUID -ne 0 ]]; then
