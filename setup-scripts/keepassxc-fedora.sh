@@ -22,6 +22,8 @@ sudo dnf -y install \
   libgcrypt-devel \
   libargon2-devel \
   libsodium-devel \
+  readline-devel \
+  rubygem-asciidoctor \
   qrencode-devel \
   zlib-devel
 
