@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
 sudo ip link set dev wlp0s20f3 down
 
 vendor_prefix=$(macchanger -l | grep "$1" | shuf -n 1 | awk '{print $3}')

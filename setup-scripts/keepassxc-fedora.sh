@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
 # More info at https://github.com/keepassxreboot/keepassxc
 
 # Install required build packages
@@ -28,15 +30,13 @@ sudo dnf -y install \
   zlib-devel
 
 # If the source direcory already exists delete it
-source_dir=~/keepassxc
-if [ -d $source_dir ]; then
-  sudo rm -rf $source_dir
-fi
+SOURCE_DIR=/tmp/keepassxc
+sudo rm -rf $SOURCE_DIR
 
 # Download the source and prepare the build directory
-cd ~
-git clone https://github.com/keepassxreboot/keepassxc.git
-cd keepassxc
+git clone https://github.com/keepassxreboot/keepassxc.git $SOURCE_DIR
+cd $SOURCE_DIR
+git fetch
 git pull
 git checkout master
 mkdir build
@@ -68,7 +68,3 @@ cmake \
 
 # Install it to /usr/local/bin
 sudo make install
-
-# Delete the source directory
-cd ~
-sudo rm -rf $source_dir

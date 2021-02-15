@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
 # This script is for installing KeePassX on Debian based distros
 if [ "$USER" != 'root' ]; then
 	echo "You must run this script as root!"
@@ -23,16 +25,16 @@ apt-get install build-essential cmake libqt4-dev libgcrypt11-dev zlib1g-dev
 
 # Download the latest keepassx and extract it
 echo "Downloading, extracting, and installing KeePassX..."
-wget -O ~/$KPX_VER.tar.gz $KPX_URL
-cd ~
-tar -xvf ~/$KPX_VER.tar.gz
-cd ~/$KPX_VER
+wget -O $HOME/$KPX_VER.tar.gz $KPX_URL
+cd $HOME
+tar -xvf $HOME/$KPX_VER.tar.gz
+cd $HOME/$KPX_VER
 
 # Configure, make, and install keepassx
 mkdir build
 cd build
 cmake ..
 make && make install
-cd ~
+cd $HOME
 
 echo "KeePassX is now installed!"

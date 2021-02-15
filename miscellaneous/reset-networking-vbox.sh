@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
 # This resetting the networking routes after disconnecting OpenVPN
 if [ "$USER" != 'root' ]; then
 	echo "You must run this script as root!"

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
 mount_device=$1
 mount_dir=/mnt/backup_usb
 rsync_source=/home/"$USER"/rsync/

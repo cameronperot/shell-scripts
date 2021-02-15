@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-set -e
+set -eu -o pipefail
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+
+SOURCE_DIR=/tmp/caps2esc
+sudo rm -rf $SOURCE_DIR
 
 sudo dnf install cmake yaml-cpp-devel libevdev-devel systemd-devel
-cd $HOME
-rm -rf caps2esc
-mkdir caps2esc
-cd caps2esc
 
-git clone https://gitlab.com/interception/linux/plugins/caps2esc.git
-cd caps2esc
+git clone https://gitlab.com/interception/linux/plugins/caps2esc.git $SOURCE_DIR
+cd $SOURCE_DIR
 mkdir build
 cd build
 cmake ..
@@ -31,7 +32,7 @@ ExecStart=/usr/bin/nice -n -20 /usr/local/bin/udevmon -c /etc/udevmon.yaml
 [Install]
 WantedBy=multi-user.target' | sudo tee /etc/systemd/system/udevmon.service
 
-cd $HOME/caps2esc
+cd $SOURCE_DIR
 
 git clone https://gitlab.com/interception/linux/tools.git
 cd tools
