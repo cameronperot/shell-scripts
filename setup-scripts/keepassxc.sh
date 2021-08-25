@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P )"
 
 # More info at https://github.com/keepassxreboot/keepassxc
 
-# Install required build packages
+# Install required dependencies
 sudo dnf -y install \
   make \
   automake \
   gcc-c++ \
-  cmake
-
-# Install required dependencies
-sudo dnf -y install \
+  cmake \
   qt5-qtbase-devel \
+  qt5-qtbase-private-devel \
   qt5-linguist \
   qt5-qttools \
   qt5-qtsvg-devel \
@@ -24,6 +22,8 @@ sudo dnf -y install \
   libgcrypt-devel \
   libargon2-devel \
   libsodium-devel \
+  libXi-devel \
+  libXtst-devel \
   readline-devel \
   rubygem-asciidoctor \
   qrencode-devel \
@@ -31,11 +31,11 @@ sudo dnf -y install \
 
 # If the source direcory already exists delete it
 SOURCE_DIR=/tmp/keepassxc
-sudo rm -rf $SOURCE_DIR
+sudo rm -rf ${SOURCE_DIR}
 
 # Download the source and prepare the build directory
-git clone https://github.com/keepassxreboot/keepassxc.git $SOURCE_DIR
-cd $SOURCE_DIR
+git clone https://github.com/keepassxreboot/keepassxc.git ${SOURCE_DIR}
+cd ${SOURCE_DIR}
 git fetch
 git pull
 git checkout master
@@ -68,3 +68,6 @@ cmake \
 
 # Install it to /usr/local/bin
 sudo make install
+
+# Remove the source directory
+sudo rm -rf ${SOURCE_DIR}
