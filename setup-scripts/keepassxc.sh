@@ -4,13 +4,15 @@ set -eu -o pipefail
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P )"
 
 # More info at https://github.com/keepassxreboot/keepassxc
+KEEPASSXC_VERSION="2.7.6"
 
 # Install required dependencies
 sudo dnf -y install \
   make \
   automake \
-  gcc-c++ \
+  botan2-devel \
   cmake \
+  gcc-c++ \
   qt5-qtbase-devel \
   qt5-qtbase-private-devel \
   qt5-linguist \
@@ -30,15 +32,15 @@ sudo dnf -y install \
   zlib-devel
 
 # If the source direcory already exists delete it
-SOURCE_DIR=/tmp/keepassxc
-sudo rm -rf ${SOURCE_DIR}
+SOURCE_DIR="/tmp/keepassxc"
+sudo rm -rf "${SOURCE_DIR}"
 
 # Download the source and prepare the build directory
-git clone https://github.com/keepassxreboot/keepassxc.git ${SOURCE_DIR}
-cd ${SOURCE_DIR}
+git clone https://github.com/keepassxreboot/keepassxc.git "${SOURCE_DIR}"
+cd "${SOURCE_DIR}"
 git fetch
 git pull
-git checkout master
+git checkout "${KEEPASSXC_VERSION}"
 mkdir build
 cd build
 
@@ -70,4 +72,4 @@ cmake \
 sudo make install
 
 # Remove the source directory
-sudo rm -rf ${SOURCE_DIR}
+sudo rm -rf "${SOURCE_DIR}"
