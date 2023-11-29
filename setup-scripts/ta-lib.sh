@@ -20,4 +20,5 @@ make install
 
 # clean up
 cd ${ORIGINAL_DIR}
+rm /tmp/ta-lib.tar.gz
 rm -rf /tmp/ta-lib

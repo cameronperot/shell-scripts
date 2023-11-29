@@ -12,3 +12,4 @@ fi
 wget -O /tmp/juliamono-ttf.zip https://github.com/cormullion/juliamono/raw/master/juliamono-ttf.zip
 unzip -o -d "${FONTS_DIR}/" /tmp/juliamono-ttf.zip
 fc-cache -f -v
+rm /tmp/juliamono-ttf.zip
