@@ -3,8 +3,8 @@ set -eu -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P )"
 
-# Setting up the miniconda directory
-INSTALL_DIR="${HOME}/miniconda31"
+# Setting up the miniconda directory - default to ~/miniconda
+INSTALL_DIR="${1:-${HOME}/miniconda}"
 CONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sudo rm -rf "${INSTALL_DIR}"
 sudo mkdir "${INSTALL_DIR}"
