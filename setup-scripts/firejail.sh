@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
 
-VERSION="0.9.68"
+sudo dnf install \
+    automake \
+    gawk \
+    gcc \
+    gcc-c++ \
+    git \
+    kernel-devel \
+    libselinux-devel \
+    make \
+    pkg-config
+
+VERSION="0.9.72"
 INTEGRATE=${1:-true}
 SOURCE_DIR="${HOME}/firejail"
 sudo rm -rf "${SOURCE_DIR}"
@@ -20,4 +31,4 @@ if [ "${INTEGRATE}" = 'true' ]; then
     sudo firecfg
 fi
 
-#sudo rm -rf ${SOURCE_DIR}
+sudo rm -rf "${SOURCE_DIR}"

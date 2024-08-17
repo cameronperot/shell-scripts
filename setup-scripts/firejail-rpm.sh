@@ -4,7 +4,7 @@ set -eu -o pipefail
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P )"
 
 # setup
-RELEASE="0.9.68"
+RELEASE="0.9.72"
 INTEGRATE=${1:-true}
 SOURCE_DIR=/tmp/firejail
 
