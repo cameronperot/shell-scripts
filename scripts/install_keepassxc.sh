@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
+echo "Starting KeePassXC build and installation..."
 
 # More info at https://github.com/keepassxreboot/keepassxc
-KEEPASSXC_VERSION="2.7.9"
+KEEPASSXC_VERSION="2.7.10"
+echo "Installing KeePassXC version ${KEEPASSXC_VERSION}..."
 
-# Install required dependencies
+echo "Installing required dependencies..."
 sudo dnf -y install \
     make \
     automake \
@@ -32,20 +33,26 @@ sudo dnf -y install \
     qrencode-devel \
     zlib-devel
 
-# If the source direcory already exists delete it
 SOURCE_DIR="/tmp/keepassxc"
-sudo rm -rf "${SOURCE_DIR}"
+if [ -d "${SOURCE_DIR}" ]; then
+    echo "Removing existing source directory: ${SOURCE_DIR}"
+    sudo rm -rf "${SOURCE_DIR}"
+fi
 
-# Download the source and prepare the build directory
+echo "Cloning KeePassXC repository..."
 git clone https://github.com/keepassxreboot/keepassxc.git "${SOURCE_DIR}"
 cd "${SOURCE_DIR}"
+
+echo "Updating repository and checking out version ${KEEPASSXC_VERSION}..."
 git fetch
 git pull
 git checkout "${KEEPASSXC_VERSION}"
+
+echo "Creating build directory..."
 mkdir build
 cd build
 
-# Run cmake with the desired options
+echo "Configuring build with cmake..."
 cmake \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
@@ -69,8 +76,10 @@ cmake \
     -DWITH_APP_BUNDLE=OFF \
     ..
 
-# Install it to /usr/local/bin
+echo "Building and installing KeePassXC to /usr/local/bin..."
 sudo make install
 
-# Remove the source directory
+echo "Cleaning up source directory..."
 sudo rm -rf "${SOURCE_DIR}"
+
+echo "KeePassXC ${KEEPASSXC_VERSION} installation completed successfully!"
