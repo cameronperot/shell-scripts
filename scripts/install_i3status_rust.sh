@@ -25,6 +25,7 @@ git clone https://github.com/greshake/i3status-rust "${SOURCE_DIR}"
 cd "${SOURCE_DIR}"
 
 echo "Building i3status-rust (this may take a few minutes)..."
+. "${HOME}/.cargo/env"
 cargo install --path . --locked
 
 echo "Installing runtime files..."
