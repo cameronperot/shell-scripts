@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-SIGNAL_VERSION="v7.50.0"
+SIGNAL_VERSION="v7.52.0"
 NODE_VERSION="22.14.0"
 PNPM_VERSION="10.3.0"
 
