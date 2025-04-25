@@ -2,7 +2,7 @@
 set -eu -o pipefail
 
 # Set variables
-export MAMBA_ROOT_PREFIX="${HOME}/micromamba"
+export MAMBA_ROOT_PREFIX="${HOME}/.micromamba"
 MICROMAMBA="${MAMBA_ROOT_PREFIX}/bin/micromamba"
 mkdir -p "${MAMBA_ROOT_PREFIX}"
 
