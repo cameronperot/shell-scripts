@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-SIGNAL_VERSION="v7.52.0"
-NODE_VERSION="22.14.0"
-PNPM_VERSION="10.3.0"
+SIGNAL_VERSION="v7.80.1"
+NODE_VERSION="22.21.1"
+PNPM_VERSION="10.6.4"
 
 podman run \
     --rm \
